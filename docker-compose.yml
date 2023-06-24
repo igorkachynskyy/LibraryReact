@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  librarydb:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=igork
+      - POSTGRES_PASSWORD=qwery3333
+      - POSTGRES_DATABASE=library
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db_data/:/var/lib/postgresql/data
+    
