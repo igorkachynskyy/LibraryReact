@@ -5,7 +5,7 @@ services:
     environment:
       - POSTGRES_USER=igork
       - POSTGRES_PASSWORD=qwery3333
-      - POSTGRES_DATABASE=library
+      - POSTGRES_DB=library
     ports:
       - 5432:5432
     volumes:

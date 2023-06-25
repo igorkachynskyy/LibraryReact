@@ -1,28 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { AdrressDto } from './address.dto';
+import { InsertResult, Repository } from 'typeorm';
+import { AddressDto } from './address.dto';
 import { Address } from './address.entity';
 import { v4 as uuid } from 'uuid';
+
 @Injectable()
 export class AddressService {
   @InjectRepository(Address)
   private readonly repository: Repository<Address>;
 
-  public async GetAddres(id: string): Promise<Address | null> {
-    return this.repository.findOne({ where: { ID: id } });
+  public async GetAddress(query: object): Promise<Address | null> {
+    return this.repository.findOne(query);
   }
 
-  public async CreateAddress(body: AdrressDto): Promise<Address> {
-    const address: Address = new Address();
+  public async CreateAddress(address: AddressDto): Promise<Address> {
+    const _address: Address = new Address();
 
-    address.ID = uuid();
-    address.Country = body.Country;
-    address.City = body.City;
-    address.Street = body.Street;
-    address.Flat = body.Flat;
-    address.Postcode = body.Postcode;
+    _address.ID = uuid();
+    _address.Country = address.Country;
+    _address.City = address.City;
+    _address.Street = address.Street;
+    _address.Flat = address.Flat;
+    _address.Postcode = address.Postcode;
 
-    return this.repository.save(address);
+    return this.repository.save(_address);
+  }
+
+  public async UpdateAddress(address: Address): Promise<InsertResult> {
+    return this.repository.upsert(address, ['ID']);
+  }
+
+  public async DeleteAddress(address: Address): Promise<Address | null> {
+    return this.repository.remove(address);
   }
 }
