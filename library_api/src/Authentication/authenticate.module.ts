@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
-import { UserService } from 'src/User/user.service';
 import { AuthenticateService } from './authenticate.service';
 import { AuthenticateController } from './authenticate.controller';
-import { UserModule } from 'src/User/user.module';
+import { UserService } from 'src/User/user.service';
+import { JwtStrategy } from './jwt.strategy';
 
 Module({
   imports: [],
-  controllers: [],
-  providers: [],
+  controllers: [AuthenticateController],
+  providers: [AuthenticateService, UserService, JwtStrategy],
 });
 
 export class AuthenticateModule {}

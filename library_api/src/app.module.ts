@@ -14,21 +14,26 @@ import { User } from './User/user.entity';
 import { JwtStrategy } from './Authentication/jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { UserController } from './User/user.controller';
+import { SeasonTicketController } from './SeasonTicket/seasonticket.controller';
+import { SeasonTicket } from './SeasonTicket/seasonticket.entity';
+import { SeasonTicketService } from './SeasonTicket/seasonticket.service';
+import { SeasonTicketNodule } from './SeasonTicket/seasonticket.module';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath, isGlobal: true }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    AuthenticateModule,
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, SeasonTicket]),
     JwtModule.register({
       secret: process.env.SECRET_KEY as string,
       signOptions: { expiresIn: process.env.EXPIRES_IN as string },
     }),
+    AuthenticateModule,
     UserModule,
+    SeasonTicketNodule,
   ],
-  controllers: [AuthenticateController, UserController],
+  controllers: [AuthenticateController],
   providers: [AuthenticateService, UserService, JwtStrategy],
 })
 export class AppModule {}

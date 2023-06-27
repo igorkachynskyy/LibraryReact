@@ -1,5 +1,5 @@
-import { IsString, IsNotEmpty } from 'class-validator';
-
+import { IsString, IsNotEmpty, isEnum, IsEnum } from 'class-validator';
+import { Role } from './user.interface';
 export class UserDto {
   @IsNotEmpty()
   @IsString()
@@ -16,4 +16,8 @@ export class UserDto {
   @IsNotEmpty()
   @IsString()
   Password: string;
+
+  @IsNotEmpty()
+  @IsEnum(Role)
+  Role: Role;
 }
