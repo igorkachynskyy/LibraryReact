@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { User } from 'src/User/user.entity';
+import { Entity, PrimaryColumn, Column, JoinColumn, OneToOne } from 'typeorm';
 
 export enum TicketType {
   Basic = 'basic',
@@ -10,8 +11,9 @@ export class SeasonTicket {
   @PrimaryColumn()
   ID: string;
 
-  @Column()
-  UserID: string;
+  @JoinColumn()
+  @OneToOne(() => User, (user) => user.SeasonTicket)
+  User: User;
 
   @Column()
   TicketType: TicketType;
