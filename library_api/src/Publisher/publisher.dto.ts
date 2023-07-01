@@ -12,7 +12,7 @@ export class PublisherDto {
   @ApiProperty()
   Name: string;
 
-  @IsUUID()
+  @IsUUID(undefined, { each: true })
   @IsOptional()
   @ApiProperty()
   @IsArray()

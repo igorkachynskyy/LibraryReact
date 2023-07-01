@@ -12,7 +12,7 @@ export class TagDto {
   @ApiProperty()
   Description: string;
 
-  @IsUUID()
+  @IsUUID(undefined, { each: true })
   @IsOptional()
   @ApiProperty()
   @IsArray()

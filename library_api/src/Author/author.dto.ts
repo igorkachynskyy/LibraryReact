@@ -25,7 +25,7 @@ export class AuthorDto {
   Rate: number;
 
   @IsArray()
-  @IsUUID()
+  @IsUUID(undefined, { each: true })
   @IsOptional()
   @ApiProperty()
   BooksID: string[];

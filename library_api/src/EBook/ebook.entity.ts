@@ -6,7 +6,6 @@ import { ChildEntity, Column, JoinTable, ManyToMany } from 'typeorm';
 @ChildEntity()
 export class EBook extends PublicationItem {
   @ManyToMany(() => Author, (author) => author.Books, { cascade: true })
-  @JoinTable()
   Authors: Author[];
 
   @Column()

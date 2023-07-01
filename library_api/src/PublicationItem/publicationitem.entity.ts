@@ -43,14 +43,10 @@ export class PublicationItem {
   LibraryItems: LibraryItem[] | null;
 
   @JoinColumn()
-  @ManyToOne(() => Publisher, (publisher) => publisher.PublicationItems, {
-    cascade: true,
-  })
+  @ManyToOne(() => Publisher, (publisher) => publisher.PublicationItems)
   Publisher: Publisher | null;
 
-  @JoinTable()
   @ManyToMany(() => Tag, (tag) => tag.PublicationItems, {
-    eager: true,
     cascade: true,
   })
   Tags: Tag[] | null;
@@ -60,7 +56,6 @@ export class PublicationItem {
 
   @JoinColumn()
   @OneToMany(() => Review, (review) => review.PublicationItem, {
-    eager: true,
     cascade: true,
   })
   Reviews: Review[] | null;

@@ -2,13 +2,13 @@ import { Type } from 'class-transformer';
 import {
   IsNotEmpty,
   IsString,
-  IsDate,
   IsEnum,
   IsOptional,
   IsArray,
   ValidateNested,
   IsNumber,
   IsUUID,
+  IsDateString,
 } from 'class-validator';
 import { Language } from './publicationitem.entity';
 import { ApiProperty } from '@nestjs/swagger/dist';
@@ -19,7 +19,7 @@ export class PublicationItemDto {
   @ApiProperty()
   Title: string;
 
-  @IsDate()
+  @IsDateString()
   @IsNotEmpty()
   @ApiProperty()
   DatePublished: Date;
@@ -35,7 +35,7 @@ export class PublicationItemDto {
   @IsArray()
   @ValidateNested({ each: true })
   @IsOptional()
-  @IsUUID()
+  @IsUUID(undefined, { each: true })
   @ApiProperty()
   TagsID: string[] | null;
 
@@ -46,7 +46,7 @@ export class PublicationItemDto {
   @IsArray()
   @ValidateNested({ each: true })
   @IsOptional()
-  @IsUUID()
+  @IsUUID(undefined, { each: true })
   @ApiProperty()
   ReviewsID: string[] | null;
 

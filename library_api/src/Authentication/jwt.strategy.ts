@@ -22,6 +22,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       Login: payload.Login,
       Password: payload.Password,
       Role: payload.Role,
+      LibraryItems: null,
+      SeasonTicket: payload.SeasonTicket ? payload.SeasonTicket : null,
+      Reviews: null,
     };
     return user;
   }

@@ -17,8 +17,7 @@ export enum Genre {
 
 @ChildEntity()
 export class Book extends PublicationItem {
-  @ManyToMany(() => Author, (author) => author.Books, { cascade: true })
-  @JoinTable()
+  @ManyToMany(() => Author, (author) => author.Books)
   Authors: Author[];
 
   @Column()

@@ -6,15 +6,17 @@ import { Genre } from './book.entity';
 export class BookDto extends PublicationItemDto {
   @IsArray()
   @IsNotEmpty()
-  @IsUUID()
+  @IsUUID(undefined, { each: true })
   @ApiProperty()
   AuthorsID: string[];
 
   @IsUrl()
   @IsNotEmpty()
+  @ApiProperty()
   ImagePath: string;
 
   @IsNotEmpty()
   @IsEnum(Genre)
+  @ApiProperty()
   Genre: Genre;
 }
