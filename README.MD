@@ -15,3 +15,11 @@ The library with bookstore web app was created for personal development and lear
 - Front-end: ReactJS
 - API: NestJS + TypeORM
 - Database: PostgreSQL
+
+## API Features
+
+- JWT Authorization & Authentication
+- Roles
+- Structure of DB by Entities
+- All useful and important for the Front-end enpoints and objects
+- Validation
